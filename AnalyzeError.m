@@ -1,13 +1,7 @@
-function out = AnalyzeError(sat)
+function [condition, maxError] = AnalyzeError(sat, render)
 c = 299792.458;
 
 target = [0,0,6370];
-
-%Random satellite positions
-%sat1 = SphericalToCartesian(rad, rand()*pi/2, rand()*pi*2);
-%sat2 = SphericalToCartesian(rad, rand()*pi/2, rand()*pi*2);
-%sat3 = SphericalToCartesian(rad, rand()*pi/2, rand()*pi*2);
-%sat4 = SphericalToCartesian(rad, rand()*pi/2, rand()*pi*2);
 
 dtdiffs = [];   %The maximum differences of t errors
 emfs = [];      %The corresponding emfs
@@ -36,8 +30,13 @@ for i = 1:1000
     maxErr = max(norm(expectation(1:3) - target), maxErr);
 end
 
-plot(dtdiffs, emfs, 'o'); hold on
-fprintf("Estimated Condition Number: %d\n", maxEmf);
-fprintf("Maximum Error Encountered: %d kilometers\n", maxErr);
+if (render)
+    plot(dtdiffs, emfs, 'o');
+    xlabel('Range on Input Error');
+    ylabel('emf');
+end
+
+condition = maxEmf;
+maxError = maxErr;
 
 end
