@@ -17,23 +17,22 @@ end
 
 rmat = rref(mat);
 
-%ad = rmat(1,4) + rmat(2,4) + rmat(3,4) - c*c;
-%bd = rmat(1,4) * (rmat(1,5) + S(1,1));
-%bd = bd + rmat(2,4) * (rmat(2,5) + S(1,2));
-%bd = bd + rmat(3,4) * (rmat(3,5) + S(1,3));
-%bd = 2 * (bd + c*c*S(1,4));
-%cd = (rmat(1,5) + S(1,1))^2 + (rmat(2,5) + S(1,2))^2 + (rmat(3,5) + S(1,3))^2;
-%cd = cd + c*c*S(1,1)*S(1,1);
+ad = rmat(1,4) + rmat(2,4) + rmat(3,4) - c*c;
+bd = rmat(1,4) * (rmat(1,5) + S(1,1));
+bd = bd + rmat(2,4) * (rmat(2,5) + S(1,2));
+bd = bd + rmat(3,4) * (rmat(3,5) + S(1,3));
+bd = 2 * (bd + c*c*S(1,4));
+cd = (rmat(1,5) + S(1,1))^2 + (rmat(2,5) + S(1,2))^2 + (rmat(3,5) + S(1,3))^2;
+cd = cd + c*c*S(1,1)*S(1,1);
 
 ad = (rmat(1,4)^2) + (rmat(2,4)^2) + (rmat(3,4)^2) - (c^2);
 bd = 2*((rmat(1,4)*S(1,1)) + (rmat(2,4)*S(1,2)) + (rmat(3,4)*S(1,3)) - (S(1,4)*(c^2)));
 cd = ((rmat(1,5)^2) + (rmat(2,5)^2) + (rmat(3,5)^2)) - (2*((rmat(1,5)*S(1,1)) + (rmat(2,5)*S(1,2)) + (rmat(3,5)*S(1,3)))) + ((S(1,1)^2) + (S(1,2)^2) + (S(1,3)^2) + ((c^2)*(S(1,4)^2)));
 
 [dlo, dhi] = Quadratic(ad, bd, cd);
-x = -rmat(1,4)*dhi + rmat(1,5);
-y = -rmat(2,4)*dhi + rmat(2,5);
-z = -rmat(3,4)*dhi + rmat(3,5);
+x = -rmat(1,4)*dlo + rmat(1,5);
+y = -rmat(2,4)*dlo + rmat(2,5);
+z = -rmat(3,4)*dlo + rmat(3,5);
 
-out = [x, y, z, dhi];
-end
+out = [x, y, z, dlo]
 
