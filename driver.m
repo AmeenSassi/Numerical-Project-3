@@ -13,8 +13,11 @@ fprintf("Calculated d: %d\n", ans1(4));
 disp(ans1);
 
 %Question 2
-
-
+fprintf("\n")
+fprintf("Problem 2\n");
+ans1 = Q2();
+fprintf("Calculated Position: %d, %d, %d\n", ans1(1), ans1(2), ans1(3));
+fprintf("Calculated d: %d\n", ans1(4));
 %Question 4
 fprintf("\n")
 fprintf("Problem 4\n");
